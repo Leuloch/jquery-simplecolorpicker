@@ -37,9 +37,10 @@
 
       if (self.options.picker === true) {
         var selectText = self.$select.find('> option:selected').text();
+        var selectHex = self.$select.find('> option:selected').data("hex");
         self.$icon = $('<span class="simplecolorpicker icon"'
                      + ' title="' + selectText + '"'
-                     + ' style="background-color: ' + self.$select.val() + ';"'
+                     + ' style="background-color: ' + selectHex + ';"'
                      + ' role="button" tabindex="0">'
                      + '</span>').insertAfter(self.$select);
         self.$icon.on('click.' + self.type, $.proxy(self.showPicker, self));
@@ -59,7 +60,7 @@
       // <span class="color selected" title="Green" style="background-color: #7bd148;" role="button"></span>
       self.$select.find('> option').each(function() {
         var $option = $(this);
-        var color = $option.val();
+        var color = $option.data("hex");
 
         var isSelected = $option.is(':selected');
         var isDisabled = $option.is(':disabled');
